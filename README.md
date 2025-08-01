@@ -1,23 +1,23 @@
 // Use DBML to define your database structure
 // Docs: https://dbml.dbdiagram.io/docs
 
-Table pencipta {
-  id_pencipta integer [primary key]
-  merk_p varchar
-  id_sales integer
+Table pengarang {
+  id_pengarang integer [primary key]
+  nama_p varchar
+  id_penerbit integer
 }
 
-Table sales {
-  id_sales integer [primary key]
-  merk_pt varchar
+Table penerbit {
+  id_penerbit integer [primary key]
+  nama_pt varchar
 }
 
-table tas{
-  id_tas integer [primary key]
-  kode_tas varchar 
-  id_pencipta integer [primary key]
-  id_sales integer [primary key]
-  jumlah_barang integer 
+table buku{
+  id_buku integer [primary key]
+  judul_buku varchar 
+  id_pengarang integer [primary key]
+  id_penerbit integer [primary key]
+  jumlah_hal integer 
 }
 
 table supplier{
@@ -25,7 +25,7 @@ table supplier{
   nama_customer varchar
   alamat_customer varchar
   kota_customer varchar 
-  nomor_customer varchar 
+  nomor_custoner varchar 
 }
 
 table orders{
@@ -36,13 +36,13 @@ table orders{
 
 table detil{
   no_po varchar
-  id_tas integer [primary key]
+  id_buku integer [primary key]
   qty_beli varchar
   harga_sat varchar
 }
 
-Ref: pencipta.id_pencipta > tas.id_pencipta
-Ref: sales.id_sales > tas.id_sales
+Ref: pengarang.id_pengarang > buku.id_pengarang
+Ref: penerbit.id_penerbit > buku.id_penerbit
 Ref: supplier.id_supplier > orders.id_supplier
 Ref: orders.no_po > detil.no_po
-Ref: detil.id_tas > tas.id_tas
+Ref: detil.id_buku > buku.id_buku
